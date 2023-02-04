@@ -212,10 +212,10 @@ public class BookingService {
     }
 
     private List<Room> availableRooms(Hotel hotel, LocalDate checkInDate, LocalDate checkOutDate) {
-        List<Room> hotelRooms = hotel.getRooms();
-        //fixme
-        List<Room> bookedRooms = bookedRooms(hotel, checkInDate.plusDays(1), checkOutDate.minusDays(1));
-        return hotelRooms.stream().filter(room -> !bookedRooms.contains(room)).toList();
+        Set<Room> hotelRooms = new HashSet<>(hotel.getRooms());
+        Set<Room> bookedRooms = new HashSet<>(bookedRooms(hotel, checkInDate.plusDays(1), checkOutDate.minusDays(1)));
+        hotelRooms.removeAll(bookedRooms);
+        return hotelRooms.stream().toList();
     }
 
     private List<Room> bookedRooms(Hotel hotel, LocalDate checkInDate, LocalDate checkOutDate) {

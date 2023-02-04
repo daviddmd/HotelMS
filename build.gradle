@@ -7,6 +7,10 @@ plugins {
 
 }
 
+bootJar {
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
 group = 'com.trivialware'
 version = '1.0.0'
 sourceCompatibility = '17'
@@ -18,7 +22,7 @@ configurations {
 }
 
 openApi {
-    apiDocsUrl.set("http://localhost:8080/api/rest-api-docs")
+    apiDocsUrl.set("http://localhost:8081/api/rest-api-docs")
 }
 
 repositories {

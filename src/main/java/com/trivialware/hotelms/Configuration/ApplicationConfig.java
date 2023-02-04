@@ -77,7 +77,7 @@ public class ApplicationConfig {
 
         return modelMapper;
     }
-    
+
     //Swagger Configuration
     @Bean
     public GroupedOpenApi apiGroup() {
@@ -86,7 +86,7 @@ public class ApplicationConfig {
 
     @Bean
     public OpenAPI apiInfo() {
-        final var securitySchemeName = "bearerAuth";
+        String securitySchemeName = "Authorization";
         return new OpenAPI()
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(
@@ -94,10 +94,11 @@ public class ApplicationConfig {
                                 .addSecuritySchemes(
                                         securitySchemeName,
                                         new SecurityScheme()
-                                                .name(securitySchemeName)
                                                 .type(SecurityScheme.Type.HTTP)
+                                                .bearerFormat("JWT")
                                                 .scheme("bearer")
-                                                .bearerFormat("JWT")))
+                                )
+                )
                 .info(
                         new Info().
                                 title("HotelMS REST Api").

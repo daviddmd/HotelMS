@@ -167,7 +167,7 @@ public class HotelServiceTest {
                 cost(newServiceCost).
                 build();
         mvc.perform(MockMvcRequestBuilders.post("/services").
-                        content(toJson(mapper, serviceHotelDTO)).
+                        content(toJson(mapper, serviceHotelCreateDTO)).
                         contentType(MediaType.APPLICATION_JSON).
                         characterEncoding(StandardCharsets.UTF_8).
                         header("Authorization", "Bearer " + adminToken).

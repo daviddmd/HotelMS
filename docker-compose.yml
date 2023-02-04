@@ -1,0 +1,50 @@
+version: '3.5'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '${SERVER_PORT:-8081}:${SERVER_PORT:-8081}'
+    environment:
+      SPRING_DATASOURCE_HOSTNAME: db
+      SPRING_DATASOURCE_PORT: '${DB_PORT}'
+      SPRING_DATASOURCE_DATABASE_NAME: '${DB_DATABASE}'
+      SPRING_DATASOURCE_USERNAME: '${DB_USERNAME}'
+      SPRING_DATASOURCE_PASSWORD: '${DB_PASSWORD}'
+      SPRING_SERVER_PORT: '${SERVER_PORT}'
+      SECURITY_JWT_TOKEN_SECRET_KEY: '${JWT_SECRET}'
+      APPLICATION_RUNNER: '${APPLICATION_RUNNER}'
+    networks:
+      - net
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: 'mysql:8.0.31'
+    ports:
+      - '${DB_PORT:-3306}:${DB_PORT:-3306}'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      TZ: '${TIMEZONE}'
+    volumes:
+      - 'db:/var/lib/mysql'
+    networks:
+      - net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+      retries: 10
+      timeout: 30s
+networks:
+  net:
+    driver: bridge
+volumes:
+  db:
+    driver: local
