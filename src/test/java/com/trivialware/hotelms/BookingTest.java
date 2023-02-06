@@ -1,5 +1,6 @@
 package com.trivialware.hotelms;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trivialware.hotelms.Entities.User;
 import com.trivialware.hotelms.Enums.BookingStatus;
 import com.trivialware.hotelms.Enums.UserRole;
@@ -13,7 +14,6 @@ import com.trivialware.hotelms.Models.ServiceHotel.ServiceHotelCreateDTO;
 import com.trivialware.hotelms.Models.ServiceHotel.ServiceHotelDTO;
 import com.trivialware.hotelms.Models.User.*;
 import com.trivialware.hotelms.Services.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -744,8 +744,8 @@ public class BookingTest {
                         accept(MediaType.APPLICATION_JSON)).
                 andExpect(status().isOk()).andReturn();
         bookingDTO = fromJson(mapper, result, BookingDTO.class);
-        assertNotEquals(price1,bookingDTO.getPrice());
-        assertEquals(currentPrice,bookingDTO.getPrice());
+        assertNotEquals(price1, bookingDTO.getPrice());
+        assertEquals(currentPrice, bookingDTO.getPrice());
 
     }
 

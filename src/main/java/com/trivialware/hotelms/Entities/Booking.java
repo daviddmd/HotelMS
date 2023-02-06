@@ -1,7 +1,7 @@
 package com.trivialware.hotelms.Entities;
 
-import com.trivialware.hotelms.Enums.BookingStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.trivialware.hotelms.Enums.BookingStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -37,7 +37,6 @@ public class Booking {
 
     private LocalDate bookingDate;
     @NotNull
-
     private LocalDate checkInDate;
     @NotNull
     private LocalDate checkOutDate;

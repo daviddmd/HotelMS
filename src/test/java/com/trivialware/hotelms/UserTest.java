@@ -1,12 +1,12 @@
 package com.trivialware.hotelms;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 import com.trivialware.hotelms.Configuration.JWTService;
 import com.trivialware.hotelms.Entities.User;
 import com.trivialware.hotelms.Enums.UserRole;
 import com.trivialware.hotelms.Models.User.*;
 import com.trivialware.hotelms.Repositories.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.*;

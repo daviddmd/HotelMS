@@ -36,16 +36,16 @@ public class Hotel {
     @NotNull
     private boolean active;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("hotel-room")
     @ToString.Exclude
     private List<Room> rooms;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("hotel-service")
     @ToString.Exclude
     private List<ServiceHotel> services;
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "hotel-booking")
     @ToString.Exclude
     private List<Booking> bookings;
@@ -62,4 +62,6 @@ public class Hotel {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+
 }

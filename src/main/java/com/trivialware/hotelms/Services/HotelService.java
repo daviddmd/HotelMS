@@ -48,9 +48,6 @@ public class HotelService {
     }
 
     public void deleteHotel(Hotel hotel) {
-        hotel.setBookings(List.of());
-        hotel.setServices(List.of());
-        hotel.setRooms(List.of());
         hotelRepository.delete(hotel);
     }
 }

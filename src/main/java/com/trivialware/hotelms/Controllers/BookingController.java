@@ -17,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Tag(name = "Bookings")
 @RestController
 @RequestMapping("/bookings")

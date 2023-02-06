@@ -1,12 +1,12 @@
 package com.trivialware.hotelms;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trivialware.hotelms.Models.RoomType.RoomTypeCreateDTO;
 import com.trivialware.hotelms.Models.RoomType.RoomTypeDTO;
 import com.trivialware.hotelms.Models.RoomType.RoomTypeUpdateDTO;
 import com.trivialware.hotelms.Models.User.UserLoginDTO;
 import com.trivialware.hotelms.Models.User.UserRegisterDTO;
 import com.trivialware.hotelms.Services.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
